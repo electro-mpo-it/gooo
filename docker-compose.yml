@@ -1,0 +1,20 @@
+version: "3.9"
+
+# TODO: env перенести в git secrets
+
+services:
+
+    db:
+
+        image: postgres:13.3
+        container_name: users-ms-db
+        restart: always
+        ports:
+            - "5434:5432"
+        volumes:
+            - /var/lib/postgresql/data
+
+        environment:
+            POSTGRES_DB: "postgres"
+            POSTGRES_USER: "postgres"
+            POSTGRES_PASSWORD: "postgres"

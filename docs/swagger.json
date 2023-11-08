@@ -1,0 +1,59 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Users microservice",
+        "contact": {}
+    },
+    "paths": {
+        "/api/v1/users": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Создать пользователя",
+                "parameters": [
+                    {
+                        "description": "RequestBody",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/schemas.UserCreateSchema"
+                        }
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "schemas.UserCreateSchema": {
+            "type": "object",
+            "required": [
+                "password"
+            ],
+            "properties": {
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string",
+                    "minLength": 17
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

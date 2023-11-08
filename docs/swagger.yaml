@@ -1,0 +1,37 @@
+definitions:
+  schemas.UserCreateSchema:
+    properties:
+      first_name:
+        type: string
+      last_name:
+        minLength: 17
+        type: string
+      password:
+        type: string
+    required:
+    - password
+    type: object
+info:
+  contact: {}
+  title: Users microservice
+paths:
+  /api/v1/users:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: RequestBody
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/schemas.UserCreateSchema'
+      produces:
+      - application/json
+      responses:
+        "422":
+          description: Unprocessable Entity
+      summary: Создать пользователя
+      tags:
+      - users
+swagger: "2.0"
